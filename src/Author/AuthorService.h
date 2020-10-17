@@ -4,16 +4,19 @@
 #include "Author.h"
 #include "AuthorRepository.h"
 #include <QList>
+#include "AuthorQueryCondition.h"
+#include <QDebug>
 
-class AuthorController
+class AuthorService
 {
 private:
     AuthorRepository* authorRepository;
 public:
-    AuthorController();
-    ~AuthorController();
+    AuthorService();
+    ~AuthorService();
     Author* findFirst();
     QList<Author*> findAll();
+    QList<Author*> findAll(AuthorQueryCondition* conditions);
     Author* findById(int author_id);
     int count();
 };

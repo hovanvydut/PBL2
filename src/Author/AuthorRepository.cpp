@@ -28,8 +28,35 @@ Author* AuthorRepository::findFirst() {
 
 QList<Author*> AuthorRepository::findAll() {
     QList<Author*> list;
+
+    // default query conditions
     int limit = 7;
     int offsetId = 30;
+
+    this->query->prepare("SELECT TOP(:limit) author_id, name, created_at, updated_at, deleted_at "
+                         "FROM authors WHERE author_id > :offsetId");
+    this->query->bindValue(":limit", limit);
+    this->query->bindValue(":offsetId", offsetId);
+
+    this->query->exec();
+    while(this->query->next()) {
+        list.append(parse(this->query));
+    }
+
+    return list;
+}
+
+QList<Author*> AuthorRepository::findAll(AuthorQueryCondition* conditions) {
+    QList<Author*> list;
+
+    // default query conditions
+    int limit = 10;
+    int offsetId = 0;
+
+    if (conditions != nullptr) {
+        limit = conditions->getLimit() ? conditions->getLimit() : limit;
+        offsetId = conditions->getOffsetId() ?  conditions->getOffsetId() : offsetId;
+    }
 
     this->query->prepare("SELECT TOP(:limit) author_id, name, created_at, updated_at, deleted_at "
                          "FROM authors WHERE author_id > :offsetId");

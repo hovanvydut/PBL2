@@ -23,9 +23,11 @@ SOURCES += main.cpp\
     utils/Date/Date.cpp \
     src/IssuingCompany/IssuingCompany.cpp \
     src/Author/Author.cpp \
-    src/Author/AuthorController.cpp \
     src/Author/AuthorRepository.cpp \
-    src/Author/AuthorQueryCondition.cpp
+    src/Author/AuthorQueryCondition.cpp \
+    src/Author/AuthorService.cpp \
+    base/Repository.cpp \
+    src/Book/BookRepository.cpp
 
 HEADERS  += mainwindow.h \
     src/Book/Book.h \
@@ -35,8 +37,10 @@ HEADERS  += mainwindow.h \
     utils/Date/Date.h \
     src/IssuingCompany/IssuingCompany.h \
     src/Author/Author.h \
-    src/Author/AuthorController.h \
     src/Author/AuthorRepository.h \
-    src/Author/AuthorQueryCondition.h
+    src/Author/AuthorQueryCondition.h \
+    src/Author/AuthorService.h \
+    base/Repository.h \
+    src/Book/BookRepository.h
 
 FORMS    += mainwindow.ui

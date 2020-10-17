@@ -3,9 +3,10 @@
 #include "src/DB/DB.h"
 #include <QStandardItemModel>
 #include "src/Author/Author.h"
-#include "src/Author/AuthorController.h"
+#include "src/Author/AuthorService.h"
 #include <QDebug>
 #include <QList>
+#include "src/Author/AuthorQueryCondition.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -50,7 +51,7 @@ void MainWindow::on_pushButton_clicked()
 void MainWindow::on_pushButton_2_clicked()
 {
     try {
-        AuthorController *authControl = new AuthorController();
+        AuthorService *authControl = new AuthorService();
         Author* author = authControl->findFirst();
 
         QStandardItem *idCol = new QStandardItem(QString::number(author->getId()));
@@ -73,8 +74,12 @@ void MainWindow::on_pushButton_2_clicked()
 void MainWindow::on_pushButton_3_clicked()
 {
     try {
-        AuthorController* authControl = new AuthorController();
-        QList<Author*> authorList = authControl->findAll();
+        AuthorQueryCondition* authorCondition = new AuthorQueryCondition();
+        authorCondition->setLimit(5);
+        authorCondition->setOffsetId(40);
+
+        AuthorService* authControl = new AuthorService();
+        QList<Author*> authorList = authControl->findAll(authorCondition);
 
         QStandardItemModel *model = new QStandardItemModel();
         QStringList horizontalHeader;
@@ -89,8 +94,10 @@ void MainWindow::on_pushButton_3_clicked()
 
             model->appendRow( QList<QStandardItem*>() << idCol << nameCol);
         }
+
         ui->label->setText(QString::number(authControl->count()));
     } catch(const char* msg) {
+        // show dialog instead console log
         qDebug() << msg;
     }
 }
@@ -99,7 +106,7 @@ void MainWindow::on_pushButton_3_clicked()
 void MainWindow::on_pushButton_4_clicked()
 {
     try {
-        AuthorController* authControl = new AuthorController();
+        AuthorService* authControl = new AuthorService();
         Author* author = authControl->findById(5);
 
         QStandardItemModel *model = new QStandardItemModel();
