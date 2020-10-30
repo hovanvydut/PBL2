@@ -27,7 +27,10 @@ SOURCES += main.cpp\
     src/Author/AuthorQueryCondition.cpp \
     src/Author/AuthorService.cpp \
     base/Repository.cpp \
-    src/Book/BookRepository.cpp
+    src/Book/BookRepository.cpp \
+    utils/ArrayListt/ArrayListt.cpp \
+    utils/Listt/Listt.cpp \
+    utils/LinkedListt/LinkedListt.cpp
 
 HEADERS  += mainwindow.h \
     src/Book/Book.h \
@@ -41,6 +44,9 @@ HEADERS  += mainwindow.h \
     src/Author/AuthorQueryCondition.h \
     src/Author/AuthorService.h \
     base/Repository.h \
-    src/Book/BookRepository.h
+    src/Book/BookRepository.h \
+    utils/ArrayListt/ArrayListt.h \
+    utils/Listt/Listt.h \
+    utils/LinkedListt/LinkedListt.h
 
 FORMS    += mainwindow.ui

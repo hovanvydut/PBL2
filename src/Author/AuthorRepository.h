@@ -10,7 +10,8 @@
 #include "AuthorQueryCondition.h"
 #include "base/Repository.h"
 
-class AuthorRepository : Repository<Author> {
+//: Repository<Author>
+class AuthorRepository {
 private:
     static AuthorRepository* _authorRepository;
     QSqlQuery* query;
