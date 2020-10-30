@@ -1,4 +1,4 @@
-#include "AuthorRepository.h"
+#include "src/Author/AuthorRepository.h"
 
 
 AuthorRepository* AuthorRepository::_authorRepository = nullptr;
@@ -18,7 +18,7 @@ AuthorRepository::~AuthorRepository() {
     delete this->query;
 }
 
-Author* AuthorRepository::findFirst() {
+Author AuthorRepository::findFirst() {
     this->query->exec("SELECT author_id, name, created_at, updated_at, deleted_at "
                 "FROM authors");
 
@@ -26,8 +26,8 @@ Author* AuthorRepository::findFirst() {
     return parse(this->query);
 }
 
-QList<Author*> AuthorRepository::findAll() {
-    QList<Author*> list;
+Listt<Author>* AuthorRepository::findAll() {
+    Listt<Author> *list = new LinkedListt<Author>();
 
     // default query conditions
     int limit = 7;
@@ -40,14 +40,14 @@ QList<Author*> AuthorRepository::findAll() {
 
     this->query->exec();
     while(this->query->next()) {
-        list.append(parse(this->query));
+        list->add(parse(this->query));
     }
 
     return list;
 }
 
-QList<Author*> AuthorRepository::findAll(AuthorQueryCondition* conditions) {
-    QList<Author*> list;
+Listt<Author>* AuthorRepository::findAll(AuthorQueryCondition* conditions) {
+    Listt<Author> *list = new LinkedListt<Author>();
 
     // default query conditions
     int limit = 10;
@@ -65,12 +65,12 @@ QList<Author*> AuthorRepository::findAll(AuthorQueryCondition* conditions) {
 
     this->query->exec();
     while(this->query->next()) {
-        list.append(parse(this->query));
+        list->add(parse(this->query));
     }
     return list;
 }
 
-Author* AuthorRepository::findById(int author_id) {
+Author AuthorRepository::findById(int author_id) {
     this->query->prepare("SELECT author_id, name, created_at, updated_at, deleted_at "
                         "FROM authors "
                         "WHERE author_id = :author_id");
@@ -88,12 +88,12 @@ int AuthorRepository::count() {
     return this->query->value(0).toInt();
 }
 
-Author* AuthorRepository::parse(QSqlQuery* query) {
+Author AuthorRepository::parse(QSqlQuery* query) {
     int id = query->value(0).toInt();
     QString name = query->value(1).toString();
     QDate created_at = query->value(2).toDate();
     QDate updated_at = query->value(3).toDate();
     QDate deleted_at = query->value(4).toDate();
-    return new Author(id, name, created_at, updated_at, deleted_at);
+    return Author(id, name, created_at, updated_at, deleted_at);
 }
 

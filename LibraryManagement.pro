@@ -30,7 +30,8 @@ SOURCES += main.cpp\
     src/Book/BookRepository.cpp \
     utils/ArrayListt/ArrayListt.cpp \
     utils/Listt/Listt.cpp \
-    utils/LinkedListt/LinkedListt.cpp
+    utils/LinkedListt/LinkedListt.cpp \
+    utils/NodeLinkedListt/NodeLinkedListt.cpp
 
 HEADERS  += mainwindow.h \
     src/Book/Book.h \
@@ -47,6 +48,7 @@ HEADERS  += mainwindow.h \
     src/Book/BookRepository.h \
     utils/ArrayListt/ArrayListt.h \
     utils/Listt/Listt.h \
-    utils/LinkedListt/LinkedListt.h
+    utils/LinkedListt/LinkedListt.h \
+    utils/NodeLinkedListt/NodeLinkedListt.h
 
 FORMS    += mainwindow.ui

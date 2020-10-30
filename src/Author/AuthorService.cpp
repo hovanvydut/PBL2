@@ -10,19 +10,19 @@ AuthorService::~AuthorService()
 
 }
 
-Author* AuthorService::findFirst() {
+Author AuthorService::findFirst() {
     return this->authorRepository->findFirst();
 }
 
-QList<Author*> AuthorService::findAll(AuthorQueryCondition* conditions) {
+Listt<Author>* AuthorService::findAll(AuthorQueryCondition* conditions) {
     return this->authorRepository->findAll(conditions);
 }
 
-QList<Author*> AuthorService::findAll() {
+Listt<Author>* AuthorService::findAll() {
     return this->authorRepository->findAll();
 }
 
-Author* AuthorService::findById(int author_id) {
+Author AuthorService::findById(int author_id) {
     if (author_id <= 0) {
         throw "AuthorRepository::findById --> author_id is invalid";
     }

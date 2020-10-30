@@ -6,7 +6,7 @@
 #define Listt_h
 #include "utils/Listt/Listt.h"
 #endif
-#include "NodeLinkedListt.h"
+#include "utils/NodeLinkedListt/NodeLinkedListt.h"
 
 template <class E>
 class LinkedListt : public Listt<E>
@@ -286,7 +286,7 @@ const E &LinkedListt<E>::set(const int &idx, const E &elm)
         throw "index is out of range";
     }
 
-    NodeLinkedListt<E> *newNode = new NodeLinkedListt<E>(elm);
+//    NodeLinkedListt<E> *newNode = new NodeLinkedListt<E>(elm);
     NodeLinkedListt<E> *it = this->listIterator();
     int count = -1;
     while (it != nullptr)
@@ -317,10 +317,11 @@ const E &LinkedListt<E>::get(const int &idx)
         count++;
         if (count == idx)
         {
-            return (*it).getData();
+            return it->getData();
         }
         it = it->getNext();
     }
+
 }
 
 template <class E>

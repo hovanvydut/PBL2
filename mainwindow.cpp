@@ -7,6 +7,8 @@
 #include <QDebug>
 #include <QList>
 #include "src/Author/AuthorQueryCondition.h"
+#include "utils/ArrayListt/ArrayListt.h"
+#include "utils/LinkedListt/LinkedListt.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -51,11 +53,11 @@ void MainWindow::on_pushButton_clicked()
 void MainWindow::on_pushButton_2_clicked()
 {
     try {
-        AuthorService *authControl = new AuthorService();
-        Author* author = authControl->findFirst();
+        AuthorService *authorService = new AuthorService();
+        Author author = authorService->findFirst();
 
-        QStandardItem *idCol = new QStandardItem(QString::number(author->getId()));
-        QStandardItem *nameCol = new QStandardItem(author->getName());
+        QStandardItem *idCol = new QStandardItem(QString::number(author.getId()));
+        QStandardItem *nameCol = new QStandardItem(author.getName());
 
         QStandardItemModel *model = new QStandardItemModel();
         QStringList horizontalHeader;
@@ -78,8 +80,8 @@ void MainWindow::on_pushButton_3_clicked()
         authorCondition->setLimit(5);
         authorCondition->setOffsetId(40);
 
-        AuthorService* authControl = new AuthorService();
-        QList<Author*> authorList = authControl->findAll(authorCondition);
+        AuthorService* authorService = new AuthorService();
+        Listt<Author>* authorList = authorService->findAll(authorCondition);
 
         QStandardItemModel *model = new QStandardItemModel();
         QStringList horizontalHeader;
@@ -87,15 +89,14 @@ void MainWindow::on_pushButton_3_clicked()
         horizontalHeader.append(QString::fromUtf8("Tên tác giả"));
         model->setHorizontalHeaderLabels(horizontalHeader);
         ui->tableView->setModel(model);
-
-        for (int i = 0; i < authorList.size(); i++) {
-            QStandardItem *idCol = new QStandardItem(QString::number(authorList.at(i)->getId()));
-            QStandardItem *nameCol = new QStandardItem(authorList.at(i)->getName());
+        for (int i = 0; i < authorList->getSize(); i++) {
+            QStandardItem *idCol = new QStandardItem("test");
+            QStandardItem *nameCol = new QStandardItem((authorList->get(i)).getName());
 
             model->appendRow( QList<QStandardItem*>() << idCol << nameCol);
         }
 
-        ui->label->setText(QString::number(authControl->count()));
+        ui->label->setText(QString::number(authorService->count()));
     } catch(const char* msg) {
         // show dialog instead console log
         qDebug() << msg;
@@ -106,8 +107,8 @@ void MainWindow::on_pushButton_3_clicked()
 void MainWindow::on_pushButton_4_clicked()
 {
     try {
-        AuthorService* authControl = new AuthorService();
-        Author* author = authControl->findById(5);
+        AuthorService* authorService = new AuthorService();
+        Author author = authorService->findById(5);
 
         QStandardItemModel *model = new QStandardItemModel();
         QStringList horizontalHeader;
@@ -116,8 +117,8 @@ void MainWindow::on_pushButton_4_clicked()
         model->setHorizontalHeaderLabels(horizontalHeader);
         ui->tableView->setModel(model);
 
-        QStandardItem *idCol = new QStandardItem(QString::number(author->getId()));
-        QStandardItem *nameCol = new QStandardItem(author->getName());
+        QStandardItem *idCol = new QStandardItem(QString::number(author.getId()));
+        QStandardItem *nameCol = new QStandardItem(author.getName());
 
         model->appendRow( QList<QStandardItem*>() << idCol << nameCol);
 

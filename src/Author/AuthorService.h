@@ -3,9 +3,10 @@
 
 #include "Author.h"
 #include "AuthorRepository.h"
-#include <QList>
 #include "AuthorQueryCondition.h"
 #include <QDebug>
+#include "utils/ArrayListt/ArrayListt.h"
+#include "utils/LinkedListt/LinkedListt.h"
 
 class AuthorService
 {
@@ -14,10 +15,10 @@ private:
 public:
     AuthorService();
     ~AuthorService();
-    Author* findFirst();
-    QList<Author*> findAll();
-    QList<Author*> findAll(AuthorQueryCondition* conditions);
-    Author* findById(int author_id);
+    Author findFirst();
+    Listt<Author>* findAll();
+    Listt<Author>* findAll(AuthorQueryCondition* conditions);
+    Author findById(int author_id);
     int count();
 };
 

@@ -4,11 +4,12 @@
 #include "src/DB/DB.h"
 #include "Author.h"
 #include <QStandardItemModel>
-#include <QList>
 #include <QSqlQuery>
 #include <QDebug>
 #include "AuthorQueryCondition.h"
 #include "base/Repository.h"
+#include "utils/ArrayListt/ArrayListt.h"
+#include "utils/LinkedListt/LinkedListt.h"
 
 //: Repository<Author>
 class AuthorRepository {
@@ -20,12 +21,12 @@ private:
 public:
     static AuthorRepository* getInstance();
     ~AuthorRepository();
-    Author* findFirst();
-    QList<Author*> findAll();
-    QList<Author*> findAll(AuthorQueryCondition* conditions);
-    Author* findById(int author_id);
+    Author findFirst();
+    Listt<Author>* findAll();
+    Listt<Author>* findAll(AuthorQueryCondition* conditions);
+    Author findById(int author_id);
     int count();
-    static Author* parse(QSqlQuery* query);
+    static Author parse(QSqlQuery* query);
 };
 
 #endif // AUTHORREPOSITORY_H

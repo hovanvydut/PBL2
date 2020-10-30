@@ -19,11 +19,21 @@ public:
            QDate updated_at, QDate deleted_at);
     ~Author();
 
+    Listt<Author> method() {
+        Author x();
+        return x;
+    }
+
+    Author x1 = method();
+
     int getId();
-    QString getName();
+    QString getName() const;
     QDate getCreatedAt();
     QDate getUpdatedAt();
     QDate getDeletedAt();
+    friend bool operator == (Author, Author);
+    friend bool operator == (Author&, Author&);
+//    friend bool operator == (Author*, Author*);
 };
 
 #endif // AUTHOR_H

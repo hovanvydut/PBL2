@@ -26,7 +26,7 @@ int Author::getId() {
     return this->author_id;
 }
 
-QString Author::getName() {
+QString Author::getName() const  {
     return this->name;
 }
 
@@ -41,4 +41,20 @@ QDate Author::getUpdatedAt() {
 QDate Author::getDeletedAt() {
     return this->deleted_at;
 }
+
+bool operator == (Author a1, Author a2) {
+    return a1.getId() == a2.getId();
+}
+
+bool operator == (Author& a1, Author& a2) {
+    return a1.getId() == a2.getId();
+}
+
+//bool operator == (Author* a1, Author* a2) {
+//    if (a1 == nullptr || a2 == nullptr) {
+//        return false;
+//    }
+
+//    return a1->getId() == a2->getId();
+//}
 
