@@ -7,11 +7,10 @@
 #include <QSqlQuery>
 #include <QDebug>
 #include "AuthorQueryCondition.h"
-#include "base/Repository.h"
 #include "utils/ArrayListt/ArrayListt.h"
 #include "utils/LinkedListt/LinkedListt.h"
+#include "base/Repository.h"
 
-//: Repository<Author>
 class AuthorRepository {
 private:
     static AuthorRepository* _authorRepository;
@@ -26,7 +25,7 @@ public:
     Listt<Author>* findAll(AuthorQueryCondition* conditions);
     Author findById(int author_id);
     int count();
-    static Author parse(QSqlQuery* query);
+    Author parse(QSqlQuery* query);
 };
 
 #endif // AUTHORREPOSITORY_H

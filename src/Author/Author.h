@@ -18,14 +18,6 @@ public:
     Author(int author_id, QString name, QDate created_at,
            QDate updated_at, QDate deleted_at);
     ~Author();
-
-    Listt<Author> method() {
-        Author x();
-        return x;
-    }
-
-    Author x1 = method();
-
     int getId();
     QString getName() const;
     QDate getCreatedAt();

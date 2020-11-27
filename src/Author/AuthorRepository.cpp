@@ -15,7 +15,7 @@ AuthorRepository* AuthorRepository::getInstance() {
 }
 
 AuthorRepository::~AuthorRepository() {
-    delete this->query;
+    // delete this->query;
 }
 
 Author AuthorRepository::findFirst() {

@@ -1,20 +1,28 @@
 #ifndef PUBLISHER_H
 #define PUBLISHER_H
 
-#include <string>
-#include "utils/Date/Date.h"
+#include <QString>
+#include <QDate>
+#include "base/Entity.h"
 
-class Publisher
+class Publisher : public Entity
 {
 private:
-    int publisher_id;
-    std::string name;
-    Date created_at;
-    Date updated_at;
-    Date deleted_at;
+    const int publisher_id;
+    QString name;
+    QDate created_at;
+    QDate updated_at;
+    QDate deleted_at;
 public:
-    Publisher();
+    Publisher(int=0, QString name = "No Name");
+    Publisher(int, QString name, QDate, QDate, QDate);
     ~Publisher();
+    int getPublisherId();
+    QString getName();
+    QDate getCreatedAt();
+    QDate getUpdatedAt();
+    QDate getDeletedAt();
+    virtual void save();
 };
 
 #endif // PUBLISHER_H

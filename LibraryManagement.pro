@@ -16,7 +16,6 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    src/Book/Book.cpp \
     src/DB/DB.cpp \
     src/Publisher/Publisher.cpp \
     src/Category/Category.cpp \
@@ -27,14 +26,15 @@ SOURCES += main.cpp\
     src/Author/AuthorQueryCondition.cpp \
     src/Author/AuthorService.cpp \
     base/Repository.cpp \
-    src/Book/BookRepository.cpp \
     utils/ArrayListt/ArrayListt.cpp \
     utils/Listt/Listt.cpp \
     utils/LinkedListt/LinkedListt.cpp \
-    utils/NodeLinkedListt/NodeLinkedListt.cpp
+    utils/NodeLinkedListt/NodeLinkedListt.cpp \
+    src/Publisher/PublisherRepository.cpp \
+    base/Entity.cpp \
+    utils/Comparable/Comparable.cpp
 
 HEADERS  += mainwindow.h \
-    src/Book/Book.h \
     src/DB/DB.h \
     src/Publisher/Publisher.h \
     src/Category/Category.h \
@@ -45,10 +45,12 @@ HEADERS  += mainwindow.h \
     src/Author/AuthorQueryCondition.h \
     src/Author/AuthorService.h \
     base/Repository.h \
-    src/Book/BookRepository.h \
     utils/ArrayListt/ArrayListt.h \
     utils/Listt/Listt.h \
     utils/LinkedListt/LinkedListt.h \
-    utils/NodeLinkedListt/NodeLinkedListt.h
+    utils/NodeLinkedListt/NodeLinkedListt.h \
+    src/Publisher/PublisherRepository.h \
+    base/Entity.h \
+    utils/Comparable/Comparable.h
 
 FORMS    += mainwindow.ui
